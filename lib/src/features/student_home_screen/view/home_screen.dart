@@ -1,10 +1,12 @@
+
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:scube_technologies_task/src/global/widget/global_appbar.dart';
 import '../../../global/constants/colors_resources.dart';
 import '../../../global/constants/images.dart';
 import '../../../global/widget/global_image_loader.dart';
 import '../../../global/widget/global_sized_box.dart';
 import '../../../global/widget/global_text.dart';
+import 'widget/triple_tab_container.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,116 +15,57 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateMixin {
-
+class _HomeScreenState extends State<HomeScreen> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-  late TabController _tabController;
 
-  // Sample data
+  int selectedTabIndex = 0;
   double totalPower = 5.53;
   String selectedSource = 'Source';
-
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(length: 3, vsync: this);
-  }
-
-  @override
-  void dispose() {
-    _tabController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: ColorRes.white150,
-      appBar: AppBar(
-        backgroundColor: ColorRes.white,
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: ColorRes.black),
-          onPressed: () => Get.back(),
+      backgroundColor: ColorRes.appBackGroundColor,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(60),
+        child: GlobalAppBar(
+          titleText: "SCM",
         ),
-        title: GlobalText(
-          str: "SCM",
-          fontSize: 18,
-          fontWeight: FontWeight.w600,
-          color: ColorRes.black,
-        ),
-        centerTitle: true,
-        actions: [
-          Stack(
-            children: [
-              IconButton(
-                icon: Icon(Icons.notifications_outlined, color: ColorRes.black),
-                onPressed: () {},
-              ),
-              Positioned(
-                right: 12,
-                top: 12,
-                child: Container(
-                  width: 8,
-                  height: 8,
-                  decoration: BoxDecoration(
-                    color: ColorRes.red,
-                    shape: BoxShape.circle,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ],
       ),
-      body: Column(
-        children: [
-          // Tab Bar
-          Container(
-            color: ColorRes.white,
-            child: TabBar(
-              controller: _tabController,
-              indicatorColor: ColorRes.appColor,
-              indicatorWeight: 3,
-              labelColor: ColorRes.white,
-              unselectedLabelColor: ColorRes.textSecondary,
-              indicator: BoxDecoration(
-                color: ColorRes.appColor,
-                borderRadius: BorderRadius.circular(8),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // Tab Container
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              decoration: BoxDecoration(
+                color: ColorRes.white,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(width: 1, color: ColorRes.appBorderColor)
               ),
-              labelStyle: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-              ),
-              unselectedLabelStyle: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-              ),
-              tabs: [
-                Tab(text: "Summary"),
-                Tab(text: "SLD"),
-                Tab(text: "Data"),
-              ],
-            ),
-          ),
-
-          // Content
-          Expanded(
-            child: SingleChildScrollView(
-              padding: EdgeInsets.all(16),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  TripleTabContainer(
+                    currentIndex: selectedTabIndex,
+                    firstText: "Summary",
+                    secondText: "SLD",
+                    thirdText: "Data",
+                    onChange: (index) {
+                      setState(() {
+                        selectedTabIndex = index;
+                      });
+                    },
+                  ),
                   // Electricity Section
                   GlobalText(
                     str: "Electricity",
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
-                    color: ColorRes.textSecondary,
+                    color: ColorRes.appSecTextColor,
                   ),
 
-                  sizedBoxH(16),
+                  sizedBoxH(20),
 
                   // Power Circle
                   Center(
@@ -130,12 +73,12 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                       alignment: Alignment.center,
                       children: [
                         SizedBox(
-                          width: 160,
-                          height: 160,
+                          width: 180,
+                          height: 180,
                           child: CircularProgressIndicator(
                             value: 0.7,
-                            strokeWidth: 20,
-                            backgroundColor: ColorRes.grey.withValues(alpha: 0.2),
+                            strokeWidth: 18,
+                            backgroundColor: ColorRes.grey.withValues(alpha: 0.15),
                             valueColor: AlwaysStoppedAnimation<Color>(ColorRes.appColor),
                           ),
                         ),
@@ -144,14 +87,14 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                           children: [
                             GlobalText(
                               str: "Total Power",
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
+                              fontSize: 13,
+                              fontWeight: FontWeight.w500,
                               color: ColorRes.textSecondary,
                             ),
-                            sizedBoxH(4),
+                            sizedBoxH(6),
                             GlobalText(
                               str: "$totalPower kw",
-                              fontSize: 24,
+                              fontSize: 28,
                               fontWeight: FontWeight.w700,
                               color: ColorRes.black,
                             ),
@@ -161,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                     ),
                   ),
 
-                  sizedBoxH(20),
+                  sizedBoxH(24),
 
                   // Source/Load Toggle
                   Row(
@@ -196,10 +139,10 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
 
                   // Data View Card
                   _buildDataCard(
-                    icon: Images.electricityIcon, // Replace with your icon
+                    icon: Images.electricityIcon,
                     title: "Data View",
-                    badge: "ACTIVE",
-                    badgeColor: ColorRes.green,
+                    badge: "Active",
+                    badgeColor: ColorRes.appColor,
                     data: [
                       {"label": "Data 1", "value": "55505.63"},
                       {"label": "Data 2", "value": "58805.63"},
@@ -210,10 +153,10 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
 
                   // Data Type 2 Card
                   _buildDataCard(
-                    icon: Images.solarIcon, // Replace with your icon
+                    icon: Images.solarIcon,
                     title: "Data Type 2",
                     badge: "Active",
-                    badgeColor: ColorRes.greenAccent,
+                    badgeColor: ColorRes.green,
                     data: [
                       {"label": "Data 1", "value": "55505.63"},
                       {"label": "Data 2", "value": "58805.63"},
@@ -224,7 +167,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
 
                   // Data Type 3 Card
                   _buildDataCard(
-                    icon: Images.waterIcon, // Replace with your icon
+                    icon: Images.waterIcon,
                     title: "Data Type 3",
                     badge: "Inactive",
                     badgeColor: ColorRes.red,
@@ -236,52 +179,59 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
 
                   sizedBoxH(20),
 
-                  // Quick Access Grid
-                  GridView.count(
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 12,
-                    crossAxisSpacing: 12,
-                    childAspectRatio: 2.2,
-                    children: [
-                      _buildQuickAccessCard(
-                        icon: Images.analysisIcon,
-                        title: "Analysis Pro",
-                        iconColor: ColorRes.purple,
-                      ),
-                      _buildQuickAccessCard(
-                        icon: Images.generatorIcon,
-                        title: "G. Generator",
-                        iconColor: ColorRes.orange,
-                      ),
-                      _buildQuickAccessCard(
-                        icon: Images.plantIcon,
-                        title: "Plant Summary",
-                        iconColor: ColorRes.orange,
-                      ),
-                      _buildQuickAccessCard(
-                        icon: Images.gasIcon,
-                        title: "Natural Gas",
-                        iconColor: ColorRes.red,
-                      ),
-                      _buildQuickAccessCard(
-                        icon: Images.dGeneratorIcon,
-                        title: "D. Generator",
-                        iconColor: ColorRes.gold,
-                      ),
-                      _buildQuickAccessCard(
-                        icon: Images.waterProcessIcon,
-                        title: "Water Process",
-                        iconColor: ColorRes.cyan,
-                      ),
-                    ],
-                  ),
                 ],
               ),
             ),
-          ),
-        ],
+
+            // Content
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Quick Access Grid
+                GridView.count(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 12,
+                  crossAxisSpacing: 12,
+                  childAspectRatio: 2.2,
+                  children: [
+                    _buildQuickAccessCard(
+                      icon: Images.analysisIcon,
+                      title: "Analysis Pro",
+                      iconColor: ColorRes.purple,
+                    ),
+                    _buildQuickAccessCard(
+                      icon: Images.generatorIcon,
+                      title: "G. Generator",
+                      iconColor: ColorRes.orange,
+                    ),
+                    _buildQuickAccessCard(
+                      icon: Images.plantIcon,
+                      title: "Plant Summary",
+                      iconColor: ColorRes.orange,
+                    ),
+                    _buildQuickAccessCard(
+                      icon: Images.gasIcon,
+                      title: "Natural Gas",
+                      iconColor: ColorRes.red,
+                    ),
+                    _buildQuickAccessCard(
+                      icon: Images.dGeneratorIcon,
+                      title: "D. Generator",
+                      iconColor: ColorRes.gold,
+                    ),
+                    _buildQuickAccessCard(
+                      icon: Images.waterProcessIcon,
+                      title: "Water Process",
+                      iconColor: ColorRes.cyan,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -294,13 +244,13 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 12),
+        padding: const EdgeInsets.symmetric(vertical: 12),
         decoration: BoxDecoration(
           color: isSelected ? ColorRes.appColor : ColorRes.white,
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(25),
           border: Border.all(
             color: isSelected ? ColorRes.appColor : ColorRes.grey.withValues(alpha: 0.3),
-            width: 1,
+            width: 1.5,
           ),
         ),
         child: Center(
@@ -323,14 +273,17 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
     required List<Map<String, String>> data,
   }) {
     return Container(
-      padding: EdgeInsets.all(12),
+      padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
         color: ColorRes.white,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: ColorRes.grey.withValues(alpha: 0.2),
-          width: 1,
-        ),
+        boxShadow: [
+          BoxShadow(
+            color: ColorRes.grey.withValues(alpha: 0.1),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -338,10 +291,10 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
           Row(
             children: [
               Container(
-                width: 32,
-                height: 32,
+                width: 36,
+                height: 36,
                 decoration: BoxDecoration(
-                  color: ColorRes.appColor.withValues(alpha: 0.1),
+                  color: ColorRes.appColor.withValues(alpha: 0.12),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Center(
@@ -353,24 +306,24 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                   ),
                 ),
               ),
-              sizedBoxW(8),
+              sizedBoxW(10),
               Expanded(
                 child: GlobalText(
                   str: title,
-                  fontSize: 14,
+                  fontSize: 15,
                   fontWeight: FontWeight.w600,
                   color: ColorRes.black,
                 ),
               ),
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 decoration: BoxDecoration(
-                  color: badgeColor.withValues(alpha: 0.1),
-                  borderRadius: BorderRadius.circular(4),
+                  color: badgeColor.withValues(alpha: 0.12),
+                  borderRadius: BorderRadius.circular(6),
                 ),
                 child: GlobalText(
                   str: badge,
-                  fontSize: 10,
+                  fontSize: 11,
                   fontWeight: FontWeight.w600,
                   color: badgeColor,
                 ),
@@ -379,25 +332,25 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
               Icon(
                 Icons.chevron_right,
                 color: ColorRes.textTertiary,
-                size: 20,
+                size: 22,
               ),
             ],
           ),
-          sizedBoxH(12),
+          sizedBoxH(14),
           ...data.map((item) => Padding(
-            padding: EdgeInsets.only(bottom: 6),
+            padding: const EdgeInsets.only(bottom: 8),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GlobalText(
                   str: item["label"]!,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w400,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
                   color: ColorRes.textSecondary,
                 ),
                 GlobalText(
-                  str: item["value"]!,
-                  fontSize: 12,
+                  str: ": ${item["value"]!}",
+                  fontSize: 13,
                   fontWeight: FontWeight.w600,
                   color: ColorRes.black,
                 ),
@@ -415,22 +368,25 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
     required Color iconColor,
   }) {
     return Container(
-      padding: EdgeInsets.all(12),
+      padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: ColorRes.white,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: ColorRes.grey.withValues(alpha: 0.2),
-          width: 1,
-        ),
+        boxShadow: [
+          BoxShadow(
+            color: ColorRes.grey.withValues(alpha: 0.1),
+            blurRadius: 6,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
       child: Row(
         children: [
           Container(
-            width: 36,
-            height: 36,
+            width: 38,
+            height: 38,
             decoration: BoxDecoration(
-              color: iconColor.withValues(alpha: 0.1),
+              color: iconColor.withValues(alpha: 0.12),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Center(
@@ -446,7 +402,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
           Expanded(
             child: GlobalText(
               str: title,
-              fontSize: 12,
+              fontSize: 13,
               fontWeight: FontWeight.w600,
               color: ColorRes.black,
               maxLines: 2,

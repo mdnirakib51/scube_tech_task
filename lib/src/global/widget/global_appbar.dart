@@ -84,24 +84,25 @@ class GlobalAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: backColor ?? ColorRes.appColor,
+      backgroundColor: backColor ?? ColorRes.white,
       automaticallyImplyLeading: false,
       leadingWidth: isBackIc == true ? 56 : 0,
+      elevation: 1,
       leading: leading ?? (isBackIc == true ? IconButton(
         splashRadius: 0.1,
-        icon: const Icon(Icons.arrow_back, color: ColorRes.white, size: 22),
+        icon: const Icon(Icons.arrow_back, color: ColorRes.black, size: 22),
         onPressed: (){
           Get.back();
         },
       ) : const SizedBox.shrink()),
-      centerTitle: centerTitle,
+      centerTitle: centerTitle ?? true,
       title: title ?? GlobalText(
         str: titleText ?? "",
-        color: titleColor ?? ColorRes.white,
+        color: titleColor ?? ColorRes.black,
         fontSize: fontSize ?? 16,
         fontWeight: fontWeight ?? FontWeight.w500,
         textAlign: TextAlign.center,
-        fontFamily: 'Rubik',
+        height: 2.4,
       ),
       actions: actions,
     );

@@ -75,8 +75,11 @@ class ColorRes {
 
   static const Color appColor = Color(0xFF0096FC);
   static const Color appBackColor = Color(0xFFFFFFFF);
+  static const Color appBackGroundColor = Color(0xFFD9E4F1);
   static const Color appTextColor = Color(0xFF5E5E5E);
+  static const Color appSecTextColor = Color(0xFF979797);
   static const Color appInputBorderColor = Color(0xFFB9C6D6);
+  static const Color appBorderColor = Color(0xFFB6B8D0);
   static const Color appRedColor = Color(0xFFD20820);
   static const Color textColor = Color(0xFF004080);
   static const Color bottomColor = Color(0xFF0A67DE);
