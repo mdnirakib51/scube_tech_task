@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:scube_technologies_task/src/features/student_home_screen/view/custom_interactive_scrollbar_widget.dart';
+import 'package:get/get.dart';
 import 'package:scube_technologies_task/src/global/widget/global_appbar.dart';
 import '../../../global/constants/colors_resources.dart';
 import '../../../global/constants/images.dart';
 import '../../../global/widget/global_image_loader.dart';
 import '../../../global/widget/global_sized_box.dart';
 import '../../../global/widget/global_text.dart';
+import '../../student_quick_access/view/student_quick_access_screen.dart';
+import '../../../global/widget/custom_interactive_scrollbar_widget.dart';
 import 'widget/triple_tab_container.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -157,7 +159,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
 
-                    sizedBoxH(20),
+                    sizedBoxH(10),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Divider(height: 1, color: ColorRes.appSecTextColor),
+                    ),
+                    sizedBoxH(10),
 
                     // Data Cards - FIXED: Wrapped in SizedBox with fixed height
                     Padding(
@@ -440,41 +447,46 @@ class _HomeScreenState extends State<HomeScreen> {
     required String icon,
     required String title,
   }) {
-    return Container(
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: ColorRes.white,
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: ColorRes.appBorderColor, width: 1),
-        boxShadow: [
-          BoxShadow(
-            color: ColorRes.grey.withValues(alpha: 0.08),
-            blurRadius: 6,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          Center(
-            child: GlobalImageLoader(
-              imagePath: icon,
-              height: 24,
-              width: 24 ,
+    return GestureDetector(
+      onTap: (){
+        Get.to(()=> StudentQuickAccessScreen());
+      },
+      child: Container(
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: ColorRes.white,
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: ColorRes.appBorderColor, width: 1),
+          boxShadow: [
+            BoxShadow(
+              color: ColorRes.grey.withValues(alpha: 0.08),
+              blurRadius: 6,
+              offset: const Offset(0, 2),
             ),
-          ),
-          sizedBoxW(8),
-          Expanded(
-            child: GlobalText(
-              str: title,
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
-              color: ColorRes.black,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
+          ],
+        ),
+        child: Row(
+          children: [
+            Center(
+              child: GlobalImageLoader(
+                imagePath: icon,
+                height: 24,
+                width: 24 ,
+              ),
             ),
-          ),
-        ],
+            sizedBoxW(8),
+            Expanded(
+              child: GlobalText(
+                str: title,
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                color: ColorRes.black,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
