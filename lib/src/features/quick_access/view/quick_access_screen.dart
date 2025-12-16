@@ -7,14 +7,14 @@ import '../../../global/constants/colors_resources.dart';
 import '../../../global/constants/images.dart';
 import '../../../global/widget/global_image_loader.dart';
 
-class StudentQuickAccessScreen extends StatefulWidget {
-  const StudentQuickAccessScreen({super.key});
+class QuickAccessScreen extends StatefulWidget {
+  const QuickAccessScreen({super.key});
 
   @override
-  State<StudentQuickAccessScreen> createState() => _StudentQuickAccessScreenState();
+  State<QuickAccessScreen> createState() => _QuickAccessScreenState();
 }
 
-class _StudentQuickAccessScreenState extends State<StudentQuickAccessScreen> {
+class _QuickAccessScreenState extends State<QuickAccessScreen> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   int selectedTabIndex = 0;
