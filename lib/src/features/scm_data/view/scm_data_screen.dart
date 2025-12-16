@@ -1,10 +1,10 @@
-
 import 'package:flutter/material.dart';
 import 'package:scube_technologies_task/src/global/widget/global_appbar.dart';
 import '../../../global/constants/colors_resources.dart';
 import '../../../global/widget/global_sized_box.dart';
 import '../../../global/widget/global_text.dart';
 import '../components/semi_circular_progress_painter.dart';
+import 'tab/scm_today_daa_tab.dart';
 
 class ScmDataScreen extends StatefulWidget {
   const ScmDataScreen({super.key});
@@ -18,7 +18,6 @@ class _ScmDataScreenState extends State<ScmDataScreen> {
 
   int selectedTabIndex = 0;
   int selectedSubTabIndex = 0;
-  double totalPower = 5.53;
   String selectedSource = 'Source';
 
   @override
@@ -37,7 +36,7 @@ class _ScmDataScreenState extends State<ScmDataScreen> {
           children: [
             Container(
               height: MediaQuery.of(context).size.height,
-              margin: EdgeInsets.only(top: 30),
+              margin: EdgeInsets.only(top: 35),
               decoration: BoxDecoration(
                 color: ColorRes.white,
                 borderRadius: BorderRadius.circular(20),
@@ -65,7 +64,7 @@ class _ScmDataScreenState extends State<ScmDataScreen> {
                         height: 150,
                         child: CustomPaint(
                           painter: SemiCircularProgressPainter(
-                            progress: 0.9,
+                            progress: 0.75,
                             backgroundColor: ColorRes.grey.withValues(alpha: 0.15),
                             progressColor: ColorRes.appCircleColor,
                             strokeWidth: 16,
@@ -79,14 +78,14 @@ class _ScmDataScreenState extends State<ScmDataScreen> {
                           children: [
                             GlobalText(
                               str: "55.00",
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500,
+                              fontSize: 24,
+                              fontWeight: FontWeight.w600,
                               color: ColorRes.appThiTextColor,
                             ),
                             GlobalText(
                               str: "kWh/Sqft",
                               fontSize: 14,
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w400,
                               color: ColorRes.appThiTextColor,
                             ),
                           ],
@@ -95,94 +94,105 @@ class _ScmDataScreenState extends State<ScmDataScreen> {
                     ],
                   ),
 
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      // Data View Radio Button
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              selectedSubTabIndex = 0;
-                            });
-                          },
-                          child: Container(
-                            color: Colors.transparent,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Radio<int>(
-                                  value: 0,
-                                  groupValue: selectedSubTabIndex,
-                                  activeColor: ColorRes.appColor,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      selectedSubTabIndex = value!;
-                                    });
-                                  },
-                                ),
-                                GlobalText(
-                                  str: "Today Data",
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                  color: selectedSubTabIndex == 0
-                                      ? ColorRes.appColor
-                                      : ColorRes.appThiTextColor,
-                                ),
-                              ],
+                  sizedBoxH(10),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        // Today Data Radio Button
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                selectedSubTabIndex = 0;
+                              });
+                            },
+                            child: Container(
+                              color: Colors.transparent,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Radio<int>(
+                                    value: 0,
+                                    groupValue: selectedSubTabIndex,
+                                    activeColor: ColorRes.appColor,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        selectedSubTabIndex = value!;
+                                      });
+                                    },
+                                  ),
+                                  GlobalText(
+                                    str: "Today Data",
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w500,
+                                    color: selectedSubTabIndex == 0
+                                        ? ColorRes.appColor
+                                        : ColorRes.grey,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
 
-                      // Revenue View Radio Button
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              selectedSubTabIndex = 1;
-                            });
-                          },
-                          child: Container(
-                            color: Colors.transparent,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Radio<int>(
-                                  value: 1,
-                                  groupValue: selectedSubTabIndex,
-                                  activeColor: ColorRes.appColor,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      selectedSubTabIndex = value!;
-                                    });
-                                  },
-                                ),
-                                GlobalText(
-                                  str: "Custom Date Data",
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                  color: selectedSubTabIndex == 1
-                                      ? ColorRes.appColor
-                                      : ColorRes.appThiTextColor,
-                                ),
-                              ],
+                        // Custom Date Data Radio Button
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                selectedSubTabIndex = 1;
+                              });
+                            },
+                            child: Container(
+                              color: Colors.transparent,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Radio<int>(
+                                    value: 1,
+                                    groupValue: selectedSubTabIndex,
+                                    activeColor: ColorRes.appColor,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        selectedSubTabIndex = value!;
+                                      });
+                                    },
+                                  ),
+                                  GlobalText(
+                                    str: "Custom Date Data",
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w500,
+                                    color: selectedSubTabIndex == 1
+                                        ? ColorRes.appColor
+                                        : ColorRes.grey,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
+                      ],
+                    ),
+                  ),
+
+                  IndexedStack(
+                    index: selectedSubTabIndex,
+                    children: [
+                      ScmTodayDaaTab()
                     ],
                   ),
-                  sizedBoxH(10),
 
 
                 ],
               ),
             ),
 
+            // Top Radio Buttons (Data View / Revenue View)
             Container(
               margin: EdgeInsets.only(top: 10, left: 25, right: 25),
-              padding: EdgeInsets.symmetric(horizontal: 10),
+              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
               decoration: BoxDecoration(
                 color: ColorRes.white,
                 borderRadius: BorderRadius.circular(12),
@@ -199,7 +209,6 @@ class _ScmDataScreenState extends State<ScmDataScreen> {
                 ],
               ),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   // Data View Radio Button
                   Expanded(
@@ -218,6 +227,8 @@ class _ScmDataScreenState extends State<ScmDataScreen> {
                               value: 0,
                               groupValue: selectedTabIndex,
                               activeColor: ColorRes.appColor,
+                              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                              visualDensity: VisualDensity.compact,
                               onChanged: (value) {
                                 setState(() {
                                   selectedTabIndex = value!;
@@ -226,11 +237,11 @@ class _ScmDataScreenState extends State<ScmDataScreen> {
                             ),
                             GlobalText(
                               str: "Data View",
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
                               color: selectedTabIndex == 0
                                   ? ColorRes.appColor
-                                  : ColorRes.appThiTextColor,
+                                  : ColorRes.grey,
                             ),
                           ],
                         ),
@@ -255,6 +266,8 @@ class _ScmDataScreenState extends State<ScmDataScreen> {
                               value: 1,
                               groupValue: selectedTabIndex,
                               activeColor: ColorRes.appColor,
+                              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                              visualDensity: VisualDensity.compact,
                               onChanged: (value) {
                                 setState(() {
                                   selectedTabIndex = value!;
@@ -263,11 +276,11 @@ class _ScmDataScreenState extends State<ScmDataScreen> {
                             ),
                             GlobalText(
                               str: "Revenue View",
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
                               color: selectedTabIndex == 1
                                   ? ColorRes.appColor
-                                  : ColorRes.appThiTextColor,
+                                  : ColorRes.grey,
                             ),
                           ],
                         ),
@@ -282,5 +295,4 @@ class _ScmDataScreenState extends State<ScmDataScreen> {
       ),
     );
   }
-
 }
