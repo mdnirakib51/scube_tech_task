@@ -75,11 +75,9 @@ class _GlobalButtonWidgetState extends State<GlobalButtonWidget> {
               ? GlobalText(
             str: widget.str,
             color: widget.textColor ?? ColorRes.white,
-            fontSize: widget.textSize ?? 14,
-            fontWeight: FontWeight.w500,
+            fontSize: widget.textSize ?? 18,
+            fontWeight: FontWeight.w600,
             textAlign: TextAlign.center,
-            height: 0.10,
-            fontFamily: 'Rubik',
           ) : Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -93,11 +91,9 @@ class _GlobalButtonWidgetState extends State<GlobalButtonWidget> {
               GlobalText(
                 str: widget.str,
                 color: widget.textColor ?? ColorRes.white,
-                fontSize: widget.textSize ?? 14,
-                fontWeight: FontWeight.w500,
+                fontSize: widget.textSize ?? 18,
+                fontWeight: FontWeight.w600,
                 textAlign: TextAlign.center,
-                height: 0.10,
-                fontFamily: 'Rubik',
               ),
             ],
           ),

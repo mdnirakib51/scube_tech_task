@@ -107,7 +107,7 @@ class SliverAppBarWidget extends StatelessWidget {
       expandedHeight: expandedHeight,
       backgroundColor: backgroundColor,
       elevation: elevation,
-      centerTitle: centerTitle,
+      centerTitle: centerTitle ?? true,
       leadingWidth: isBackIc == true ? 56 : 0,
       leading: leading ?? (isBackIc == true ? IconButton(
         splashRadius: 0.1,

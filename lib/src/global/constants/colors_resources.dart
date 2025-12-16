@@ -73,8 +73,10 @@ class ColorRes {
 
   // ==/@ App Color @/==
 
-  static const Color appColor = Color(0xFF0A67DE);
+  static const Color appColor = Color(0xFF0096FC);
   static const Color appBackColor = Color(0xFFFFFFFF);
+  static const Color appTextColor = Color(0xFF5E5E5E);
+  static const Color appInputBorderColor = Color(0xFFB9C6D6);
   static const Color appRedColor = Color(0xFFD20820);
   static const Color textColor = Color(0xFF004080);
   static const Color bottomColor = Color(0xFF0A67DE);

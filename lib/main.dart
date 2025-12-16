@@ -1,6 +1,6 @@
 
 import 'package:flutter/cupertino.dart';
-import 'package:shimmer/main.dart';
+import 'package:scube_technologies_task/src/app.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

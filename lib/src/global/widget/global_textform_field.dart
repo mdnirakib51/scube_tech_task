@@ -154,9 +154,9 @@ class _GlobalTextFormFieldState extends State<GlobalTextFormField> {
           decoration: widget.decoration?.copyWith(
             isDense: widget.isDense,
             hintText: widget.hintText,
-            hintStyle: widget.hintTextStyle ?? GoogleFonts.roboto(
-                fontSize: 12,
-                color: ColorRes.white200,
+            hintStyle: widget.hintTextStyle ?? GoogleFonts.inter(
+                fontSize: 14,
+                color: ColorRes.appTextColor,
                 fontWeight: FontWeight.w400
             ),
             // const TextStyle(
@@ -167,9 +167,9 @@ class _GlobalTextFormFieldState extends State<GlobalTextFormField> {
             // ),
             contentPadding: widget.contentPadding,
             labelText: widget.labelText,
-            labelStyle: widget.labelTextStyle ?? GoogleFonts.roboto(
-                fontSize: 12,
-                color: ColorRes.deep300,
+            labelStyle: widget.labelTextStyle ?? GoogleFonts.inter(
+                fontSize: 14,
+                color: ColorRes.appTextColor,
                 fontWeight: FontWeight.w400
             ),
             prefixIcon: widget.prefixIcon,
@@ -195,14 +195,14 @@ class _GlobalTextFormFieldState extends State<GlobalTextFormField> {
             isDense: widget.isDense,
             hintText: widget.hintText,
             hintStyle: widget.hintTextStyle ?? GoogleFonts.roboto(
-                fontSize: 12,
-                color: ColorRes.white200,
+                fontSize: 14,
+                color: ColorRes.appTextColor,
                 fontWeight: FontWeight.w400
             ),
             labelText: widget.labelText,
             labelStyle: widget.labelTextStyle ?? GoogleFonts.roboto(
-                fontSize: 12,
-                color: ColorRes.white200,
+                fontSize: 14,
+                color: ColorRes.appTextColor,
                 fontWeight: FontWeight.w400
             ),
             prefixIcon: widget.prefixIcon,

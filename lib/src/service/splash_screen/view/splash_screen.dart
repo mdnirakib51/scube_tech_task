@@ -79,9 +79,9 @@ class _SplashScreenState extends State<SplashScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       GlobalImageLoader(
-                        imagePath: Images.appWhiteLogo,
-                        height: 220,
-                        width: 220,
+                        imagePath: Images.appLogo,
+                        height: 96,
+                        width: 96,
                       ),
                     ],
                   ),
@@ -97,7 +97,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     ),
                     SizedBox(width: 8),
                     GlobalText(
-                      str: "Developed By STIT BD",
+                      str: "Developed By Scube Technologies LTD.",
                       fontWeight: FontWeight.w700,
                       fontSize: 14,
                       textAlign: TextAlign.center,
