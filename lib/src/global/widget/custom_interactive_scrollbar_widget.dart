@@ -126,7 +126,6 @@ class _CustomScrollbarListState extends State<CustomScrollbarList> {
           ),
         ),
 
-        // Custom scrollbar - শুধুমাত্র যখন scroll করা যায় তখন দেখাবে
         if (_isScrollable)
           Positioned(
             right: 0,

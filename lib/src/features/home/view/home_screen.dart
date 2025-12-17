@@ -1,14 +1,14 @@
+
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:scube_technologies_task/src/global/widget/global_appbar.dart';
 import '../../../global/constants/colors_resources.dart';
 import '../../../global/constants/images.dart';
-import '../../../global/widget/global_image_loader.dart';
 import '../../../global/widget/global_sized_box.dart';
 import '../../../global/widget/global_text.dart';
 import '../../../global/widget/custom_interactive_scrollbar_widget.dart';
-import '../../quick_access/view/quick_access_screen.dart';
-import '../../scm_data/view/scm_data_screen.dart';
+import 'widget/data_card_widget.dart';
+import 'widget/quick_access_card_widget.dart';
+import 'widget/toggle_button_widget.dart';
 import 'widget/triple_tab_container.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -24,6 +24,83 @@ class _HomeScreenState extends State<HomeScreen> {
   int selectedTabIndex = 0;
   double totalPower = 5.53;
   String selectedSource = 'Source';
+
+  final List<QuickAccessCardWidget> quickAccessList = [
+    QuickAccessCardWidget(icon: Images.analysisIcon, title: "Analysis Pro"),
+    QuickAccessCardWidget(icon: Images.generatorIcon, title: "G. Generator"),
+    QuickAccessCardWidget(icon: Images.plantIcon, title: "Plant Summary"),
+    QuickAccessCardWidget(icon: Images.gasIcon, title: "Natural Gas"),
+    QuickAccessCardWidget(icon: Images.dGeneratorIcon, title: "D. Generator"),
+    QuickAccessCardWidget(icon: Images.waterProcessIcon, title: "Water Process"),
+  ];
+
+  final List<DataCardWidget> dataCardList = [
+    DataCardWidget(
+      icon: Images.electricityIcon,
+      title: "Data View",
+      badge: "Active",
+      badgeColor: ColorRes.appColor,
+      data: [
+        {"label": "Data 1", "value": "55505.63"},
+        {"label": "Data 2", "value": "58805.63"},
+      ],
+    ),
+
+    DataCardWidget(
+      icon: Images.solarIcon,
+      title: "Data Ismail",
+      badge: "Active",
+      badgeColor: ColorRes.appColor,
+      data: [
+        {"label": "Data 1", "value": "55505.63"},
+        {"label": "Data 2", "value": "58805.63"},
+      ],
+    ),
+
+    DataCardWidget(
+      icon: Images.waterIcon,
+      title: "Data Type 3",
+      badge: "Inactive",
+      badgeColor: ColorRes.red,
+      data: [
+        {"label": "Data 1", "value": "55505.63"},
+        {"label": "Data 2", "value": "58805.63"},
+      ],
+    ),
+
+    DataCardWidget(
+      icon: Images.electricityIcon,
+      title: "Data View",
+      badge: "Active",
+      badgeColor: ColorRes.appColor,
+      data: [
+        {"label": "Data 1", "value": "55505.63"},
+        {"label": "Data 2", "value": "58805.63"},
+      ],
+    ),
+
+    DataCardWidget(
+      icon: Images.solarIcon,
+      title: "Data Ismail",
+      badge: "Active",
+      badgeColor: ColorRes.appColor,
+      data: [
+        {"label": "Data 1", "value": "55505.63"},
+        {"label": "Data 2", "value": "58805.63"},
+      ],
+    ),
+
+    DataCardWidget(
+      icon: Images.waterIcon,
+      title: "Data Type 3",
+      badge: "Inactive",
+      badgeColor: ColorRes.red,
+      data: [
+        {"label": "Data 1", "value": "55505.63"},
+        {"label": "Data 2", "value": "58805.63"},
+      ],
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -133,7 +210,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Row(
                           children: [
                             Expanded(
-                              child: _buildToggleButton(
+                              child: ToggleButtonWidget(
                                 text: "Source",
                                 isSelected: selectedSource == 'Source',
                                 onTap: () {
@@ -143,9 +220,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                 },
                               ),
                             ),
+
                             sizedBoxW(12),
                             Expanded(
-                              child: _buildToggleButton(
+                              child: ToggleButtonWidget(
                                 text: "Load",
                                 isSelected: selectedSource == 'Load',
                                 onTap: () {
@@ -167,107 +245,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     sizedBoxH(10),
 
-                    // Data Cards - FIXED: Wrapped in SizedBox with fixed height
                     Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: SizedBox(
-                          height: 300, // Fixed height to prevent layout issues
-                          child: CustomScrollbarList(
-                            children: [
-                              _buildDataCard(
-                                icon: Images.electricityIcon,
-                                title: "Data View",
-                                badge: "Active",
-                                badgeColor: ColorRes.appColor,
-                                data: [
-                                  {"label": "Data 1", "value": "55505.63"},
-                                  {"label": "Data 2", "value": "58805.63"},
-                                ],
-                              ),
-                              sizedBoxH(12),
-                              _buildDataCard(
-                                icon: Images.solarIcon,
-                                title: "Data Ismail",
-                                badge: "Active",
-                                badgeColor: ColorRes.green,
-                                data: [
-                                  {"label": "Data 1", "value": "55505.63"},
-                                  {"label": "Data 2", "value": "58805.63"},
-                                ],
-                              ),
-                              sizedBoxH(12),
-                              _buildDataCard(
-                                icon: Images.waterIcon,
-                                title: "Data Type 3",
-                                badge: "Inactive",
-                                badgeColor: ColorRes.red,
-                                data: [
-                                  {"label": "Data 1", "value": "55505.63"},
-                                  {"label": "Data 2", "value": "58805.63"},
-                                ],
-                              ),
-
-                              sizedBoxH(12),
-                              _buildDataCard(
-                                icon: Images.waterIcon,
-                                title: "Data Type 3",
-                                badge: "Inactive",
-                                badgeColor: ColorRes.red,
-                                data: [
-                                  {"label": "Data 1", "value": "55505.63"},
-                                  {"label": "Data 2", "value": "58805.63"},
-                                ],
-                              ),
-
-                              sizedBoxH(12),
-                              _buildDataCard(
-                                icon: Images.waterIcon,
-                                title: "Data Type 3",
-                                badge: "Inactive",
-                                badgeColor: ColorRes.red,
-                                data: [
-                                  {"label": "Data 1", "value": "55505.63"},
-                                  {"label": "Data 2", "value": "58805.63"},
-                                ],
-                              ),
-
-                              sizedBoxH(12),
-                              _buildDataCard(
-                                icon: Images.waterIcon,
-                                title: "Data Type 3",
-                                badge: "Inactive",
-                                badgeColor: ColorRes.red,
-                                data: [
-                                  {"label": "Data 1", "value": "55505.63"},
-                                  {"label": "Data 2", "value": "58805.63"},
-                                ],
-                              ),
-
-                              sizedBoxH(12),
-                              _buildDataCard(
-                                icon: Images.waterIcon,
-                                title: "Data Type 3",
-                                badge: "Inactive",
-                                badgeColor: ColorRes.red,
-                                data: [
-                                  {"label": "Data 1", "value": "55505.63"},
-                                  {"label": "Data 2", "value": "58805.63"},
-                                ],
-                              ),
-
-                              sizedBoxH(12),
-                              _buildDataCard(
-                                icon: Images.waterIcon,
-                                title: "Data Type 3",
-                                badge: "Inactive",
-                                badgeColor: ColorRes.red,
-                                data: [
-                                  {"label": "Data 1", "value": "55505.63"},
-                                  {"label": "Data 2", "value": "58805.63"},
-                                ],
-                              ),
-                            ],
-                          ),
+                          height: 300,
+                          child: CustomScrollbarList(children: dataCardList),
                         )
                     ),
 
@@ -286,32 +268,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisSpacing: 12,
                 crossAxisSpacing: 12,
                 childAspectRatio: 3.2,
-                children: [
-                  _buildQuickAccessCard(
-                    icon: Images.analysisIcon,
-                    title: "Analysis Pro",
-                  ),
-                  _buildQuickAccessCard(
-                    icon: Images.generatorIcon,
-                    title: "G. Generator",
-                  ),
-                  _buildQuickAccessCard(
-                    icon: Images.plantIcon,
-                    title: "Plant Summary",
-                  ),
-                  _buildQuickAccessCard(
-                    icon: Images.gasIcon,
-                    title: "Natural Gas",
-                  ),
-                  _buildQuickAccessCard(
-                    icon: Images.dGeneratorIcon,
-                    title: "D. Generator",
-                  ),
-                  _buildQuickAccessCard(
-                    icon: Images.waterProcessIcon,
-                    title: "Water Process",
-                  ),
-                ],
+                children: quickAccessList,
               ),
             ],
           ),
@@ -320,180 +277,4 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildToggleButton({
-    required String text,
-    required bool isSelected,
-    required VoidCallback onTap,
-  }) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 12),
-        decoration: BoxDecoration(
-          color: isSelected ? ColorRes.appColor : Colors.transparent,
-          borderRadius: BorderRadius.circular(30),
-        ),
-        child: Center(
-          child: GlobalText(
-            str: text,
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: isSelected ? ColorRes.white : ColorRes.textSecondary,
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildDataCard({
-    required String icon,
-    required String title,
-    required String badge,
-    required Color badgeColor,
-    required List<Map<String, String>> data,
-  }) {
-    return GestureDetector(
-      onTap: (){
-        Get.to(()=> ScmDataScreen());
-      },
-      child: Container(
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: ColorRes.appDataBackColor,
-          borderRadius: BorderRadius.circular(4),
-          border: Border.all(
-            color: ColorRes.appDataBorderColor,
-            width: 1,
-          ),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Center(
-                  child: GlobalImageLoader(
-                    imagePath: icon,
-                    height: 24,
-                    width: 24,
-                  ),
-                ),
-
-                sizedBoxW(10),
-                Expanded(
-                  child: SizedBox(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Container(
-                              height: 12,
-                              width: 12,
-                              color: ColorRes.appColor,
-                            ),
-
-                            sizedBoxW(4),
-                            GlobalText(
-                              str: title,
-                              fontWeight: FontWeight.w500,
-                              color: ColorRes.appThiTextColor,
-                            ),
-
-                            sizedBoxW(8),
-                            GlobalText(
-                              str: "($badge)",
-                              fontSize: 10,
-                              fontWeight: FontWeight.w600,
-                              color: badgeColor,
-                            ),
-                          ],
-                        ),
-
-                        sizedBoxH(5),
-                        ...data.map((item) => Padding(
-                          padding: const EdgeInsets.only(bottom: 2),
-                          child: Row(
-                            children: [
-                              GlobalText(
-                                str: "${item["label"]!}  : ",
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500,
-                                color: ColorRes.appFourTextColor,
-                              ),
-                              GlobalText(
-                                str: item["value"]!,
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500,
-                                color: ColorRes.black,
-                              ),
-                            ],
-                          ),
-                        )),
-                      ],
-                    ),
-                  ),
-                ),
-
-                Icon(
-                  Icons.chevron_right,
-                  color: ColorRes.textTertiary,
-                  size: 20,
-                ),
-              ],
-            ),
-
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildQuickAccessCard({
-    required String icon,
-    required String title,
-  }) {
-    return GestureDetector(
-      onTap: (){
-        Get.to(()=> QuickAccessScreen());
-      },
-      child: Container(
-        padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: ColorRes.white,
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: ColorRes.appBorderColor, width: 1),
-          boxShadow: [
-            BoxShadow(
-              color: ColorRes.grey.withValues(alpha: 0.08),
-              blurRadius: 6,
-              offset: const Offset(0, 2),
-            ),
-          ],
-        ),
-        child: Row(
-          children: [
-            Center(
-              child: GlobalImageLoader(
-                imagePath: icon,
-                height: 24,
-                width: 24 ,
-              ),
-            ),
-            sizedBoxW(8),
-            Expanded(
-              child: GlobalText(
-                str: title,
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-                color: ColorRes.black,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 }

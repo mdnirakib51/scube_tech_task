@@ -1,10 +1,8 @@
 
 import 'dart:async';
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:in_app_update/in_app_update.dart';
 import '../../../global/constants/colors_resources.dart';
 import '../../../global/constants/images.dart';
 import '../../../global/widget/global_image_loader.dart';
@@ -25,37 +23,12 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     route();
-    checkForUpdate();
 
     // Reset to portrait mode when exiting full-screen
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitUp,
     ]);
-  }
-
-  ///For In App Update ////
-  Future<void> checkForUpdate() async {
-    log('checking for Update');
-    InAppUpdate.checkForUpdate().then((info) {
-      setState(() {
-        if (info.updateAvailability == UpdateAvailability.updateAvailable) {
-          log('update available');
-          update();
-        }
-      });
-    }).catchError((e) {
-      log(e.toString());
-    });
-  }
-
-
-  void update() async {
-    log('Updating');
-    await InAppUpdate.startFlexibleUpdate();
-    InAppUpdate.completeFlexibleUpdate().then((_) {}).catchError((e) {
-      log(e.toString());
-    });
   }
 
   void route(){
