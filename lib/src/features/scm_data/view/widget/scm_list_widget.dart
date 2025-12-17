@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 
+import 'package:flutter/material.dart';
 import '../../../../global/constants/colors_resources.dart';
 import '../../../../global/widget/global_sized_box.dart';
 import '../../../../global/widget/global_text.dart';
@@ -16,7 +16,7 @@ class ScmListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 15),
+      margin: const EdgeInsets.only(left: 15, right: 15, bottom: 10),
       padding: const EdgeInsets.only(left: 10, right: 10, top: 18),
       decoration: BoxDecoration(
         color: ColorRes.white,

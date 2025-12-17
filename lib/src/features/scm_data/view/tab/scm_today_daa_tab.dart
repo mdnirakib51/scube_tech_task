@@ -1,8 +1,5 @@
 
 import 'package:flutter/material.dart';
-import '../../../../global/constants/colors_resources.dart';
-import '../../../../global/widget/global_sized_box.dart';
-import '../../../../global/widget/global_text.dart';
 import '../widget/scm_list_widget.dart';
 
 class ScmTodayDaaTab extends StatefulWidget {

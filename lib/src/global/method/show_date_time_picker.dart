@@ -10,7 +10,94 @@ Future<DateTime> showDateOnlyPicker(
     initialDate: DateTime.now(),
     firstDate: DateTime(2000),
     lastDate: DateTime(2080),
+
+    // Theme customization
+    builder: (context, child) {
+      return Theme(
+        data: Theme.of(context).copyWith(
+          // Color scheme
+          colorScheme: ColorScheme.light(
+            primary: Color(0xFF6366F1), // Indigo color
+            onPrimary: Colors.white,
+            surface: Colors.white,
+            onSurface: Color(0xFF1F2937),
+          ),
+
+          // Dialog style
+          dialogBackgroundColor: Colors.white,
+
+          // Text theme
+          textButtonTheme: TextButtonThemeData(
+            style: TextButton.styleFrom(
+              foregroundColor: Color(0xFF6366F1),
+              textStyle: TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: 14,
+              ),
+            ),
+          ),
+
+          // Date picker theme
+          datePickerTheme: DatePickerThemeData(
+            backgroundColor: Colors.white,
+            headerBackgroundColor: Color(0xFF6366F1),
+            headerForegroundColor: Colors.white,
+
+            // Selected day style
+            dayStyle: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+            ),
+
+            // Shape
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+
+            // Header style
+            headerHeadlineStyle: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
+            headerHelpStyle: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+            ),
+
+            // Day foreground colors
+            dayForegroundColor: MaterialStateProperty.resolveWith((states) {
+              if (states.contains(MaterialState.selected)) {
+                return Colors.white;
+              }
+              return Color(0xFF1F2937);
+            }),
+
+            // Day background colors
+            dayBackgroundColor: MaterialStateProperty.resolveWith((states) {
+              if (states.contains(MaterialState.selected)) {
+                return Color(0xFF6366F1);
+              }
+              return null;
+            }),
+
+            // Today border
+            todayBorder: BorderSide(
+              color: Color(0xFF6366F1),
+              width: 2,
+            ),
+            todayForegroundColor: MaterialStateProperty.resolveWith((states) {
+              if (states.contains(MaterialState.selected)) {
+                return Colors.white;
+              }
+              return Color(0xFF6366F1);
+            }),
+          ),
+        ),
+        child: child!,
+      );
+    },
   );
+
   return selectedDate ?? DateTime.now();
 }
 

@@ -86,6 +86,7 @@ class ColorRes {
   static const Color appTabBackColor = Color(0x336C99B8);
   static const Color appDataBackColor = Color(0xFFE5F4FE);
   static const Color appDataBorderColor = Color(0xFFA5A7B9);
+  static const Color appShadowColor = Color(0xFFE2EBF1);
 
 
 
