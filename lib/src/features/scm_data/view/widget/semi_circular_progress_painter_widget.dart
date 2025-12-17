@@ -44,7 +44,7 @@ class SemiCircularProgressPainterWidget extends StatelessWidget {
                 color: ColorRes.appThiTextColor,
               ),
               GlobalText(
-                str: "",
+                str: subTitle ?? "",
                 fontSize: 14,
                 fontWeight: FontWeight.w400,
                 color: ColorRes.appThiTextColor,

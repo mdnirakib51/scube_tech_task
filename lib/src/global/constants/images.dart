@@ -23,6 +23,7 @@ class Images {
   static const String appLogoShadow = 'assets/app_src/dummy_shadow_logo.png';
   static const String noDataFoundImg = 'assets/app_images/no_data_found_ic.png';
   static const String dataCostIc = 'assets/app_images/data_cost_ic.png';
+  static const String notificationIc = 'assets/app_images/notification_ic.png';
 
 
   static const String electricityIcon = 'assets/app_images/electricity_icon.png';
