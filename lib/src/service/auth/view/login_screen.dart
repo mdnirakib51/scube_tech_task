@@ -54,6 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   fontSize: 24,
                   fontWeight: FontWeight.w600,
                   color: ColorRes.white,
+                  textAlign: TextAlign.center,
                 ),
 
                 // Subtitle
@@ -62,6 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
                   color: ColorRes.white,
+                  textAlign: TextAlign.center,
                   letterSpacing: 0,
                   height: 1.4,
                 ),
@@ -165,12 +167,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       // Register link
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          GlobalText(
-                            str: "Don't have any account? ",
-                            color: ColorRes.appTextColor,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
+                          Flexible(
+                            child: GlobalText(
+                              str: "Don't have any account? ",
+                              color: ColorRes.appTextColor,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                           InkWell(
                             onTap: () {

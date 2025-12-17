@@ -40,7 +40,7 @@ class GlobalText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final h = height ?? 1.0;
-    final fw = fontSize ?? 14;
+    // final fw = fontSize ?? 14;
     final double? fontHeight = height != null ? h : null;
 
     return Text(

@@ -73,13 +73,15 @@ class _DataViewTabState extends State<DataViewTab> {
                                 : null,
                           ),
                           SizedBox(width: 8),
-                          GlobalText(
-                            str: "Today Data",
-                            fontWeight: FontWeight.w600,
-                            color: selectedSubTabIndex == 0
-                                ? ColorRes.appColor
-                                : ColorRes.grey,
-                            textAlign: TextAlign.center,
+                          Flexible(
+                            child: GlobalText(
+                              str: "Today Data",
+                              fontWeight: FontWeight.w600,
+                              color: selectedSubTabIndex == 0
+                                  ? ColorRes.appColor
+                                  : ColorRes.grey,
+                              textAlign: TextAlign.center,
+                            ),
                           ),
                         ],
                       ),
@@ -126,14 +128,16 @@ class _DataViewTabState extends State<DataViewTab> {
                             )
                           ),
                           SizedBox(width: 8),
-                          GlobalText(
-                            str: "Custom Date Data",
-                            fontSize: 13,
-                            fontWeight: FontWeight.w600,
-                            color: selectedSubTabIndex == 1
-                                ? ColorRes.appColor
-                                : ColorRes.grey,
-                            textAlign: TextAlign.center,
+                          Flexible(
+                            child: GlobalText(
+                              str: "Custom Date Data",
+                              fontSize: 13,
+                              fontWeight: FontWeight.w600,
+                              color: selectedSubTabIndex == 1
+                                  ? ColorRes.appColor
+                                  : ColorRes.grey,
+                              textAlign: TextAlign.center,
+                            ),
                           ),
                         ],
                       ),

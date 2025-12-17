@@ -139,7 +139,7 @@ class _CustomScrollbarListState extends State<CustomScrollbarList> {
                 width: widget.scrollbarWidth,
                 decoration: BoxDecoration(
                   color: widget.scrollbarBackgroundColor ??
-                      ColorRes.grey.withOpacity(0.1),
+                      ColorRes.grey.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(widget.scrollbarWidth / 2),
                 ),
                 child: Stack(
@@ -172,7 +172,7 @@ class _CustomScrollbarListState extends State<CustomScrollbarList> {
                           ),
                           boxShadow: [
                             BoxShadow(
-                              color: const Color(0xFF4E91FD).withOpacity(0.3),
+                              color: const Color(0xFF4E91FD).withValues(alpha: 0.3),
                               blurRadius: 4,
                               offset: const Offset(0, 2),
                             ),

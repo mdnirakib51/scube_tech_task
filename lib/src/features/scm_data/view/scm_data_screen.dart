@@ -116,13 +116,15 @@ class _ScmDataScreenState extends State<ScmDataScreen> {
                           ),
 
                           sizedBoxW(6),
-                          GlobalText(
-                            str: "Data View",
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            color: selectedTabIndex == 0
-                                ? ColorRes.appColor
-                                : ColorRes.grey,
+                          Flexible(
+                            child: GlobalText(
+                              str: "Data View",
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: selectedTabIndex == 0
+                                  ? ColorRes.appColor
+                                  : ColorRes.grey,
+                            ),
                           ),
                         ],
                       ),
@@ -169,13 +171,15 @@ class _ScmDataScreenState extends State<ScmDataScreen> {
                           ),
 
                           sizedBoxW(6),
-                          GlobalText(
-                            str: "Revenue View",
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            color: selectedTabIndex == 1
-                                ? ColorRes.appColor
-                                : ColorRes.grey,
+                          Flexible(
+                            child: GlobalText(
+                              str: "Revenue View",
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: selectedTabIndex == 1
+                                  ? ColorRes.appColor
+                                  : ColorRes.grey,
+                            ),
                           ),
                         ],
                       ),

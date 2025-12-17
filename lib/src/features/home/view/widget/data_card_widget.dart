@@ -67,10 +67,12 @@ class DataCardWidget extends StatelessWidget {
                             ),
 
                             sizedBoxW(4),
-                            GlobalText(
-                              str: title,
-                              fontWeight: FontWeight.w500,
-                              color: ColorRes.appThiTextColor,
+                            Flexible(
+                              child: GlobalText(
+                                str: title,
+                                fontWeight: FontWeight.w500,
+                                color: ColorRes.appThiTextColor,
+                              ),
                             ),
 
                             sizedBoxW(8),

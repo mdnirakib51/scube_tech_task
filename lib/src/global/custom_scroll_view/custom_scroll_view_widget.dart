@@ -118,11 +118,11 @@ class SliverAppBarWidget extends StatelessWidget {
   }
 }
 
-sliverSizedBoxH(double? h){
+SliverToBoxAdapter sliverSizedBoxH(double? h){
   return SliverToBoxAdapter(child: SizedBox(height: h));
 }
 
-sliverSizedBoxW(double? w){
+SliverToBoxAdapter sliverSizedBoxW(double? w){
   return SliverToBoxAdapter(child: SizedBox(width: w));
 }
 

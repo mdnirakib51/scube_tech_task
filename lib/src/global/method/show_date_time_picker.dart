@@ -23,9 +23,6 @@ Future<DateTime> showDateOnlyPicker(
             onSurface: Color(0xFF1F2937),
           ),
 
-          // Dialog style
-          dialogBackgroundColor: Colors.white,
-
           // Text theme
           textButtonTheme: TextButtonThemeData(
             style: TextButton.styleFrom(
@@ -65,16 +62,16 @@ Future<DateTime> showDateOnlyPicker(
             ),
 
             // Day foreground colors
-            dayForegroundColor: MaterialStateProperty.resolveWith((states) {
-              if (states.contains(MaterialState.selected)) {
+            dayForegroundColor: WidgetStateProperty.resolveWith((states) {
+              if (states.contains(WidgetState.selected)) {
                 return Colors.white;
               }
               return Color(0xFF1F2937);
             }),
 
             // Day background colors
-            dayBackgroundColor: MaterialStateProperty.resolveWith((states) {
-              if (states.contains(MaterialState.selected)) {
+            dayBackgroundColor: WidgetStateProperty.resolveWith((states) {
+              if (states.contains(WidgetState.selected)) {
                 return Color(0xFF6366F1);
               }
               return null;
@@ -85,13 +82,13 @@ Future<DateTime> showDateOnlyPicker(
               color: Color(0xFF6366F1),
               width: 2,
             ),
-            todayForegroundColor: MaterialStateProperty.resolveWith((states) {
-              if (states.contains(MaterialState.selected)) {
+            todayForegroundColor: WidgetStateProperty.resolveWith((states) {
+              if (states.contains(WidgetState.selected)) {
                 return Colors.white;
               }
               return Color(0xFF6366F1);
             }),
-          ),
+          ), dialogTheme: DialogThemeData(backgroundColor: Colors.white),
         ),
         child: child!,
       );
