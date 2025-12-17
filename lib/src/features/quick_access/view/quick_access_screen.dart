@@ -58,7 +58,7 @@ class _QuickAccessScreenState extends State<QuickAccessScreen> {
               ),
 
               GlobalText(
-                str: "No data is here\nplease wait",
+                str: "No data is here,\nplease wait.",
                 textAlign: TextAlign.center,
                 fontWeight: FontWeight.w400,
               ),

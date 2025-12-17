@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:scube_technologies_task/src/global/widget/global_sized_box.dart';
 import '../../../../global/constants/colors_resources.dart';
@@ -18,32 +17,97 @@ class ScmCustomDateDataTab extends StatefulWidget {
 class _ScmCustomDateDataTabState extends State<ScmCustomDateDataTab> {
 
   double totalPower = 5.53;
-  final TextEditingController dateCon = TextEditingController();
-  // Sample data for the energy chart
-  final List<Map<String, dynamic>> energyData = [
+  final TextEditingController fromDateCon = TextEditingController();
+  final TextEditingController toDateCon = TextEditingController();
+
+  // Dummy list for energy data
+  final List<Map<String, dynamic>> dummyList = [
     {
-      'name': 'Data A',
-      'color': Colors.blue,
-      'data': '2798.50 (29.53%)',
-      'cost': '35689 ৳',
+      'totalPower': 20.05,
+      'energyData': [
+        {
+          'name': 'Data A',
+          'color': Colors.blue,
+          'data': '2798.50 (29.53%)',
+          'cost': '35689 ৳',
+        },
+        {
+          'name': 'Data B',
+          'color': Colors.grey.shade700,
+          'data': '72598.50 (35.39%)',
+          'cost': '5256899 ৳',
+        },
+        {
+          'name': 'Data C',
+          'color': Colors.purple,
+          'data': '6598.36 (83.90%)',
+          'cost': '5698756 ৳',
+        },
+        {
+          'name': 'Data D',
+          'color': Colors.orange,
+          'data': '6598.26 (36.59%)',
+          'cost': '356987 ৳',
+        },
+      ],
     },
     {
-      'name': 'Data B',
-      'color': Colors.grey.shade700,
-      'data': '72598.50 (35.39%)',
-      'cost': '5256899 ৳',
+      'totalPower': 5.53,
+      'energyData': [
+        {
+          'name': 'Data A',
+          'color': Colors.blue,
+          'data': '2798.50 (29.53%)',
+          'cost': '35689 ৳',
+        },
+        {
+          'name': 'Data B',
+          'color': Colors.grey.shade700,
+          'data': '72598.50 (35.39%)',
+          'cost': '5256899 ৳',
+        },
+        {
+          'name': 'Data C',
+          'color': Colors.purple,
+          'data': '6598.36 (83.90%)',
+          'cost': '5698756 ৳',
+        },
+        {
+          'name': 'Data D',
+          'color': Colors.orange,
+          'data': '6598.26 (36.59%)',
+          'cost': '356987 ৳',
+        },
+      ],
     },
     {
-      'name': 'Data C',
-      'color': Colors.purple,
-      'data': '6598.36 (83.90%)',
-      'cost': '5698756 ৳',
-    },
-    {
-      'name': 'Data D',
-      'color': Colors.orange,
-      'data': '6598.26 (36.59%)',
-      'cost': '356987 ৳',
+      'totalPower': 15.75,
+      'energyData': [
+        {
+          'name': 'Data A',
+          'color': Colors.blue,
+          'data': '3500.00 (25.00%)',
+          'cost': '45000 ৳',
+        },
+        {
+          'name': 'Data B',
+          'color': Colors.grey.shade700,
+          'data': '80000.00 (40.00%)',
+          'cost': '6000000 ৳',
+        },
+        {
+          'name': 'Data C',
+          'color': Colors.purple,
+          'data': '7000.00 (80.00%)',
+          'cost': '6000000 ৳',
+        },
+        {
+          'name': 'Data D',
+          'color': Colors.orange,
+          'data': '7500.00 (38.00%)',
+          'cost': '400000 ৳',
+        },
+      ],
     },
   ];
 
@@ -57,11 +121,9 @@ class _ScmCustomDateDataTabState extends State<ScmCustomDateDataTab> {
             children: [
               Expanded(
                 child: GlobalTextFormField(
-                  controller: dateCon,
+                  controller: fromDateCon,
                   hintText: "From Date",
-                  decoration: borderDecoration.copyWith(
-                    contentPadding: EdgeInsets.only(left: 5),
-                  ),
+                  decoration: dateDecoration,
                   isDense: true,
                   readOnly: true,
                   sufixIcon: GestureDetector(
@@ -69,10 +131,10 @@ class _ScmCustomDateDataTabState extends State<ScmCustomDateDataTab> {
                       var pickedDate = await showDateOnlyPicker(context);
                       setState(() {
                         String formatedDate = DateTimeFormatter.showDateOnlyYear.format(pickedDate);
-                        dateCon.text = formatedDate;
+                        fromDateCon.text = formatedDate;
                       });
                     },
-                    child: const Icon(Icons.calendar_month, color: ColorRes.grey, size: 20),
+                    child: const Icon(Icons.calendar_today_outlined, color: ColorRes.appFourTextColor, size: 18),
                   ),
                 ),
               ),
@@ -80,11 +142,9 @@ class _ScmCustomDateDataTabState extends State<ScmCustomDateDataTab> {
               sizedBoxW(5),
               Expanded(
                 child: GlobalTextFormField(
-                  controller: dateCon,
+                  controller: toDateCon,
                   hintText: "To Date",
-                  decoration: borderDecoration.copyWith(
-                    contentPadding: EdgeInsets.only(left: 5),
-                  ),
+                  decoration: dateDecoration,
                   isDense: true,
                   readOnly: true,
                   sufixIcon: GestureDetector(
@@ -92,36 +152,36 @@ class _ScmCustomDateDataTabState extends State<ScmCustomDateDataTab> {
                       var pickedDate = await showDateOnlyPicker(context);
                       setState(() {
                         String formatedDate = DateTimeFormatter.showDateOnlyYear.format(pickedDate);
-                        dateCon.text = formatedDate;
+                        toDateCon.text = formatedDate;
                       });
                     },
-                    child: const Icon(Icons.calendar_month, color: ColorRes.grey, size: 20),
+                    child: const Icon(Icons.calendar_today_outlined, color: ColorRes.appFourTextColor, size: 18),
                   ),
                 ),
               ),
 
               sizedBoxW(5),
               Container(
-                height: 35, width: 35,
+                padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                  color: ColorRes.appShadowColor,
-                  borderRadius: BorderRadius.circular(6),
-                  border: Border.all(width: 1, color: ColorRes.appColor)
+                    color: ColorRes.appShadowColor,
+                    borderRadius: BorderRadius.circular(6),
+                    border: Border.all(width: 1, color: ColorRes.appColor)
                 ),
-                child: Icon(Icons.search, color: ColorRes.appColor),
+                child: Icon(Icons.search, color: ColorRes.appColor, size: 22),
               )
             ],
           ),
         ),
         ListView.builder(
-          itemCount: 4,
+          itemCount: dummyList.length,
           shrinkWrap: true,
           padding: EdgeInsets.only(bottom: 20),
           physics: NeverScrollableScrollPhysics(),
           itemBuilder: (ctx, index){
             return ScmListWidget(
-              totalPower: totalPower,
-              energyData: energyData,
+              totalPower: dummyList[index]['totalPower'],
+              energyData: dummyList[index]['energyData'],
             );
           },
         ),

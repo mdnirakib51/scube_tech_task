@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:scube_technologies_task/src/global/widget/global_appbar.dart';
+import 'package:scube_technologies_task/src/global/widget/global_sized_box.dart';
 import '../../../global/constants/colors_resources.dart';
 import '../../../global/widget/global_text.dart';
 import 'tab/data_view_tab.dart';
@@ -56,7 +57,7 @@ class _ScmDataScreenState extends State<ScmDataScreen> {
           // Top Radio Buttons (Data View / Revenue View)
           Container(
             margin: EdgeInsets.only(top: 10, left: 25, right: 25),
-            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 15),
             decoration: BoxDecoration(
               color: ColorRes.white,
               borderRadius: BorderRadius.circular(12),
@@ -87,18 +88,34 @@ class _ScmDataScreenState extends State<ScmDataScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Radio<int>(
-                            value: 0,
-                            groupValue: selectedTabIndex,
-                            activeColor: ColorRes.appColor,
-                            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                            visualDensity: VisualDensity.compact,
-                            onChanged: (value) {
-                              setState(() {
-                                selectedTabIndex = value!;
-                              });
-                            },
+                          // Custom Radio Button
+                          Container(
+                            width: 14,
+                            height: 14,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                color: selectedTabIndex == 0
+                                    ? ColorRes.appColor
+                                    : ColorRes.grey,
+                                width: 1,
+                              ),
+                            ),
+                            child: selectedTabIndex == 0
+                                ? Center(
+                              child: Container(
+                                width: 10,
+                                height: 10,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: ColorRes.appColor,
+                                ),
+                              ),
+                            )
+                                : null,
                           ),
+
+                          sizedBoxW(6),
                           GlobalText(
                             str: "Data View",
                             fontSize: 16,
@@ -126,18 +143,32 @@ class _ScmDataScreenState extends State<ScmDataScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Radio<int>(
-                            value: 1,
-                            groupValue: selectedTabIndex,
-                            activeColor: ColorRes.appColor,
-                            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                            visualDensity: VisualDensity.compact,
-                            onChanged: (value) {
-                              setState(() {
-                                selectedTabIndex = value!;
-                              });
-                            },
+                          Container(
+                              width: 14,
+                              height: 14,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  color: selectedTabIndex == 1
+                                      ? ColorRes.appColor
+                                      : ColorRes.grey,
+                                  width: 1,
+                                ),
+                              ),
+                              child: Center(
+                                child: Container(
+                                  width: 10,
+                                  height: 10,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: selectedTabIndex == 1
+                                        ? ColorRes.appColor : ColorRes.grey,
+                                  ),
+                                ),
+                              )
                           ),
+
+                          sizedBoxW(6),
                           GlobalText(
                             str: "Revenue View",
                             fontSize: 16,

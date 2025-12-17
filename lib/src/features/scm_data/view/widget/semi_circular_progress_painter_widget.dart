@@ -27,7 +27,7 @@ class SemiCircularProgressPainterWidget extends StatelessWidget {
             painter: SemiCircularProgressPainter(
               progress: progress ?? 0,
               backgroundColor: ColorRes.appCircleGreyColor,
-              progressColor: ColorRes.appCircleColor,
+              progressColor: ColorRes.appColor,
               strokeWidth: 16,
             ),
           ),

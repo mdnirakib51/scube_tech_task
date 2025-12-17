@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import '../../../../global/constants/colors_resources.dart';
 import '../../../../global/widget/global_sized_box.dart';
@@ -15,7 +14,6 @@ class DataViewTab extends StatefulWidget {
 }
 
 class _DataViewTabState extends State<DataViewTab> {
-
   int selectedSubTabIndex = 0;
 
   @override
@@ -23,21 +21,19 @@ class _DataViewTabState extends State<DataViewTab> {
     return SingleChildScrollView(
       child: Column(
         children: [
-
           sizedBoxH(80),
           SemiCircularProgressPainterWidget(
             title: "55.00",
             subTitle: "kWh/Sqft",
-            progress: 0.75,
+            progress: 0.55,
           ),
-
           sizedBoxH(10),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Today Data Radio Button
+                // Today Data Custom Radio Button
                 Expanded(
                   child: GestureDetector(
                     onTap: () {
@@ -50,23 +46,40 @@ class _DataViewTabState extends State<DataViewTab> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Radio<int>(
-                            value: 0,
-                            groupValue: selectedSubTabIndex,
-                            activeColor: ColorRes.appColor,
-                            onChanged: (value) {
-                              setState(() {
-                                selectedSubTabIndex = value!;
-                              });
-                            },
+                          // Custom Radio Button
+                          Container(
+                            width: 12,
+                            height: 12,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                color: selectedSubTabIndex == 0
+                                    ? ColorRes.appColor
+                                    : ColorRes.grey,
+                                width: 1,
+                              ),
+                            ),
+                            child: selectedSubTabIndex == 0
+                                ? Center(
+                              child: Container(
+                                width: 8,
+                                height: 8,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: ColorRes.appColor,
+                                ),
+                              ),
+                            )
+                                : null,
                           ),
+                          SizedBox(width: 8),
                           GlobalText(
                             str: "Today Data",
-                            fontSize: 13,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w600,
                             color: selectedSubTabIndex == 0
                                 ? ColorRes.appColor
                                 : ColorRes.grey,
+                            textAlign: TextAlign.center,
                           ),
                         ],
                       ),
@@ -74,7 +87,7 @@ class _DataViewTabState extends State<DataViewTab> {
                   ),
                 ),
 
-                // Custom Date Data Radio Button
+                // Custom Date Data Custom Radio Button
                 Expanded(
                   child: GestureDetector(
                     onTap: () {
@@ -87,23 +100,40 @@ class _DataViewTabState extends State<DataViewTab> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Radio<int>(
-                            value: 1,
-                            groupValue: selectedSubTabIndex,
-                            activeColor: ColorRes.appColor,
-                            onChanged: (value) {
-                              setState(() {
-                                selectedSubTabIndex = value!;
-                              });
-                            },
+                          // Custom Radio Button
+                          Container(
+                              width: 12,
+                              height: 12,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                color: selectedSubTabIndex == 1
+                                    ? ColorRes.appColor
+                                    : ColorRes.grey,
+                                width: 1,
+                              ),
+                            ),
+                            child: Center(
+                              child: Container(
+                                width: 8,
+                                height: 8,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: selectedSubTabIndex == 1
+                                      ? ColorRes.appColor : ColorRes.grey,
+                                ),
+                              ),
+                            )
                           ),
+                          SizedBox(width: 8),
                           GlobalText(
                             str: "Custom Date Data",
                             fontSize: 13,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w600,
                             color: selectedSubTabIndex == 1
                                 ? ColorRes.appColor
                                 : ColorRes.grey,
+                            textAlign: TextAlign.center,
                           ),
                         ],
                       ),
@@ -114,17 +144,8 @@ class _DataViewTabState extends State<DataViewTab> {
             ),
           ),
 
+          sizedBoxH(20),
           selectedSubTabIndex == 0 ? ScmTodayDaaTab() : ScmCustomDateDataTab()
-
-          // IndexedStack(
-          //   index: selectedSubTabIndex,
-          //   children: [
-          //     ScmTodayDaaTab(),
-          //     ScmCustomDateDataTab(),
-          //   ],
-          // ),
-
-
         ],
       ),
     );

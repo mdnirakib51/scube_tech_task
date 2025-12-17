@@ -55,7 +55,7 @@ class _RevenueViewTabState extends State<RevenueViewTab> {
           SemiCircularProgressPainterWidget(
             title: "8897455",
             subTitle: "tk",
-            progress: 0.75,
+            progress: 0.55,
           ),
 
           sizedBoxH(20),

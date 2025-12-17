@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:scube_technologies_task/src/global/constants/colors_resources.dart';
 import '../widget/scm_list_widget.dart';
 
 class ScmTodayDaaTab extends StatefulWidget {
@@ -22,7 +23,7 @@ class _ScmTodayDaaTabState extends State<ScmTodayDaaTab> {
     },
     {
       'name': 'Data B',
-      'color': Colors.grey.shade700,
+      'color': ColorRes.appColor,
       'data': '72598.50 (35.39%)',
       'cost': '5256899 ৳',
     },
