@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
 import '../constants/colors_resources.dart';
-import '../widget/global_progress_hub.dart';
 import '../widget/global_text.dart';
 
 class CustomScrollViewWidget extends StatelessWidget {
@@ -41,14 +40,11 @@ class CustomScrollViewWidget extends StatelessWidget {
       drawer: drawer,
       endDrawer: endDrawer,
       bottomSheet: bottomSheet,
-      body: ProgressHUD(
-        inAsyncCall: inAsyncCall ?? false,
-        child: CustomScrollView(
-          slivers: [
-            if (sliverAppBar != null) sliverAppBar!,
-            ...slivers,
-          ],
-        ),
+      body: CustomScrollView(
+        slivers: [
+          if (sliverAppBar != null) sliverAppBar!,
+          ...slivers,
+        ],
       ),
     );
   }

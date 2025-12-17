@@ -9,7 +9,6 @@ import '../../../global/widget/global_image_loader.dart';
 import '../../../global/widget/global_sized_box.dart';
 import '../../../global/widget/global_text.dart';
 import '../../../global/widget/global_textform_field.dart';
-import '../controller/auth_service.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -21,33 +20,9 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  TextEditingController emailCon = TextEditingController(text: "admin@gmail.com");
-  TextEditingController passCon = TextEditingController(text: "12345");
-  late bool _rememberMe;
+  TextEditingController emailCon = TextEditingController();
+  TextEditingController passCon = TextEditingController();
 
-  @override
-  void initState() {
-    super.initState();
-    _rememberMe = false;
-    _loadSavedCredentials();
-  }
-
-  void _saveCredentials() {
-    AuthService.saveCredentials(
-      email: emailCon.text,
-      password: passCon.text,
-      rememberMe: _rememberMe,
-    );
-  }
-
-  void _loadSavedCredentials() {
-    final credentials = AuthService.loadSavedCredentials();
-    setState(() {
-      emailCon.text = credentials['email'] ?? "";
-      passCon.text = credentials['password'] ?? "";
-      _rememberMe = credentials['remember_me'] ?? false;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -134,11 +109,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         labelText: 'Username',
                         decoration: borderDecoration,
                         keyboardType: TextInputType.emailAddress,
-                        onChanged: (val) {
-                          setState(() {
-                            _saveCredentials();
-                          });
-                        },
+                        onChanged: (val) {},
                       ),
 
                       sizedBoxH(20),
@@ -149,11 +120,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         labelText: 'Password',
                         decoration: borderDecoration,
                         isPasswordField: true,
-                        onChanged: (val) {
-                          setState(() {
-                            _saveCredentials();
-                          });
-                        },
+                        onChanged: (val) {},
                       ),
 
                       // Forgot password link
