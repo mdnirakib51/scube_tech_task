@@ -4,6 +4,7 @@ import 'package:scube_technologies_task/src/global/widget/global_appbar.dart';
 import '../../../global/constants/colors_resources.dart';
 import '../../../global/widget/global_text.dart';
 import 'tab/data_view_tab.dart';
+import 'tab/revenue_view_tab.dart';
 
 class ScmDataScreen extends StatefulWidget {
   const ScmDataScreen({super.key});
@@ -49,7 +50,7 @@ class _ScmDataScreenState extends State<ScmDataScreen> {
                 ),
               ],
             ),
-            child: selectedTabIndex == 0 ? DataViewTab() : SizedBox(),
+            child: selectedTabIndex == 0 ? DataViewTab() : RevenueViewTab(),
           ),
 
           // Top Radio Buttons (Data View / Revenue View)

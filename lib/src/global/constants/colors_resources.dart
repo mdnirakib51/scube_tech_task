@@ -81,6 +81,7 @@ class ColorRes {
   static const Color appThiTextColor = Color(0xFF04063E);
   static const Color appFourTextColor = Color(0xFF646984);
   static const Color appCircleColor = Color(0xFF398FC9);
+  static const Color appCircleGreyColor = Color(0x2655B4FF);
   static const Color appInputBorderColor = Color(0xFFB9C6D6);
   static const Color appBorderColor = Color(0xFFB6B8D0);
   static const Color appTabBackColor = Color(0x336C99B8);
